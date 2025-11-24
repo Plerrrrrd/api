@@ -1,0 +1,70 @@
+{
+  "clash": {
+    "basic": {
+      "name": "Basic Clash",
+      "description": "Konfigurasi minimalis untuk penggunaan dasar",
+      "features": ["Proxy sederhana", "Rule dasar", "Tidak ada custom rules"]
+    },
+    "standard": {
+      "name": "Standard Clash", 
+      "description": "Konfigurasi standar dengan fitur tambahan",
+      "features": ["Proxy lengkap", "Rule streaming", "DNS custom", "Proxy group otomatis"]
+    },
+    "advanced": {
+      "name": "Advanced Clash",
+      "description": "Konfigurasi lengkap dengan optimasi performa",
+      "features": ["Semua fitur standard", "Custom rules", "Load balancing", "Geolocation blocking"]
+    }
+  },
+  "singbox": {
+    "basic": {
+      "name": "Basic Sing-Box",
+      "description": "Konfigurasi minimal untuk Sing-Box",
+      "features": ["Outbound dasar", "Tun mode sederhana"]
+    },
+    "standard": {
+      "name": "Standard Sing-Box",
+      "description": "Konfigurasi standar dengan fitur routing",
+      "features": ["Outbound lengkap", "DNS routing", "URL test otomatis"]
+    },
+    "advanced": {
+      "name": "Advanced Sing-Box",
+      "description": "Konfigurasi lengkap dengan optimasi",
+      "features": ["Semua fitur standard", "Bypass LAN/China", "WARP integration", "Multi-threading"]
+    }
+  },
+  "surge": {
+    "basic": {
+      "name": "Basic Surge",
+      "description": "Konfigurasi minimalis untuk Surge",
+      "features": ["Proxy sederhana", "Rule dasar", "DNS sederhana"]
+    },
+    "standard": {
+      "name": "Standard Surge",
+      "description": "Konfigurasi standar dengan fitur tambahan",
+      "features": ["Proxy lengkap", "DNS custom", "Proxy group streaming/gaming", "Rule set dari URL"]
+    },
+    "advanced": {
+      "name": "Advanced Surge",
+      "description": "Konfigurasi lengkap dengan optimasi",
+      "features": ["Semua fitur standard", "URL test otomatis", "Rule set lanjutan", "Skip proxy dan always-real-ip"]
+    }
+  },
+  "quantumult": {
+    "basic": {
+      "name": "Basic Quantumult X",
+      "description": "Konfigurasi minimalis untuk Quantumult X",
+      "features": ["Proxy sederhana", "Rule dasar", "DNS sederhana"]
+    },
+    "standard": {
+      "name": "Standard Quantumult X",
+      "description": "Konfigurasi standar dengan fitur tambahan",
+      "features": ["Proxy lengkap", "DNS fallback", "Proxy group streaming/gaming", "Rule set dari URL"]
+    },
+    "advanced": {
+      "name": "Advanced Quantumult X",
+      "description": "Konfigurasi lengkap dengan optimasi",
+      "features": ["Semua fitur standard", "URL test otomatis", "Rule set lanjutan", "Skip proxy dan always-real-ip"]
+    }
+  }
+}
