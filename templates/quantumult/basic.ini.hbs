@@ -1,0 +1,21 @@
+[general]
+loglevel = notify
+intf-only = 127.0.0.1
+ipv6 = false
+dns-server = 119.29.29.29, 223.5.5.5
+
+[proxy]
+{{#each proxies}}
+{{this}}
+{{/each}}
+
+[proxy_group]
+PROXY = select, DIRECT
+{{#each proxyNames}}
+{{this}}{{#unless @last}}, {{/unless}}{{/each}}
+
+[rule]
+DOMAIN-SUFFIX,google.com,PROXY
+DOMAIN-SUFFIX,facebook.com,PROXY
+GEOIP,CN,DIRECT
+FINAL,DIRECT

@@ -1,0 +1,39 @@
+[general]
+loglevel = notify
+intf-only = 127.0.0.1
+ipv6 = false
+dns-server = 119.29.29.29, 223.5.5.5, 1.1.1.1, 8.8.8.8
+fallback-dns-server = 1.1.1.1, 8.8.8.8
+skip-proxy = 127.0.0.1, 192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12, 100.64.0.0/10, localhost, *.local
+always-real-ip = *.msftconnecttest.com, *.msftncsi.com, *.srv.nintendo.net, *.stun.playstation.net, xbox.*, *.xboxlive.com, *.battlenet.com, *.blizzard.com, *.battle.net
+network-check-url = http://www.baidu.com
+network-check-timeout = 3
+network-check-interval = 300
+
+[proxy]
+{{#each proxies}}
+{{this}}
+{{/each}}
+
+[proxy_group]
+PROXY = select, DIRECT, BestPing
+BestPing = url-test, PROXY, url = http://www.baidu.com, interval = 300, tolerance = 100
+Streaming = select, PROXY, BestPing, DIRECT
+Gaming = select, PROXY, BestPing, DIRECT
+Advertising = reject
+Hijacking = reject
+{{#each proxyNames}}
+{{this}}{{#unless @last}}, {{/unless}}{{/each}}
+
+[rule]
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/Unbreak.list,DIRECT
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/Advertising.list,Advertising
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/Hijacking.list,Hijacking
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/Extra/Apple.list,DIRECT
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/StreamingMedia.list,Streaming
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/Gaming.list,Gaming
+GEOIP,CN,DIRECT
+FINAL,PROXY
+
+[host]
+localhost = 127.0.0.1
