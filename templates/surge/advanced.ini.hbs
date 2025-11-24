@@ -1,0 +1,44 @@
+[General]
+loglevel = notify
+interface = 127.0.0.1
+port = 6153
+socks-port = 6154
+allow-wifi-access = false
+wifi-access-http-port = 6155
+wifi-access-socks5-port = 6156
+internet-test-url = http://www.baidu.com
+test-timeout = 3
+test-interval = 300
+prefer-ipv6 = false
+ipv6 = false
+dns-server = 119.29.29.29, 223.5.5.5, 1.1.1.1, 8.8.8.8
+skip-proxy = 127.0.0.1, 192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12, 100.64.0.0/10, localhost, *.local
+always-real-ip = *.msftconnecttest.com, *.msftncsi.com, *.srv.nintendo.net, *.stun.playstation.net, xbox.*, *.xboxlive.com, *.battlenet.com, *.blizzard.com, *.battle.net
+
+[Proxy]
+{{#each proxies}}
+{{this}}
+{{/each}}
+
+[Proxy Group]
+PROXY = select, DIRECT, BestPing
+BestPing = url-test, PROXY, url = http://www.baidu.com, interval = 300, tolerance = 100
+Streaming = select, PROXY, BestPing, DIRECT
+Gaming = select, PROXY, BestPing, DIRECT
+Advertising = reject
+Hijacking = reject
+{{#each proxyNames}}
+{{this}}{{#unless @last}}, {{/unless}}{{/each}}
+
+[Rule]
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Unbreak.list,DIRECT
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Guard/Advertising.list,Advertising
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Guard/Hijacking.list,Hijacking
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Extra/Apple.list,DIRECT
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/StreamingMedia/Video.list,Streaming
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Gaming.list,Gaming
+GEOIP,CN,DIRECT
+FINAL,PROXY
+
+[Host]
+localhost = 127.0.0.1

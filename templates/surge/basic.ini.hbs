@@ -1,0 +1,21 @@
+[General]
+loglevel = notify
+interface = 127.0.0.1
+port = 6153
+socks-port = 6154
+
+[Proxy]
+{{#each proxies}}
+{{this}}
+{{/each}}
+
+[Proxy Group]
+PROXY = select, DIRECT
+{{#each proxyNames}}
+{{this}}{{#unless @last}}, {{/unless}}{{/each}}
+
+[Rule]
+DOMAIN-SUFFIX,google.com,PROXY
+DOMAIN-SUFFIX,facebook.com,PROXY
+GEOIP,CN,DIRECT
+FINAL,DIRECT

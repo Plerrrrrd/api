@@ -1,0 +1,34 @@
+[General]
+loglevel = notify
+interface = 127.0.0.1
+port = 6153
+socks-port = 6154
+allow-wifi-access = false
+wifi-access-http-port = 6155
+wifi-access-socks5-port = 6156
+internet-test-url = http://www.baidu.com
+test-timeout = 3
+test-interval = 300
+
+[Proxy]
+{{#each proxies}}
+{{this}}
+{{/each}}
+
+[Proxy Group]
+PROXY = select, DIRECT
+Streaming = select, PROXY, DIRECT
+Gaming = select, PROXY, DIRECT
+{{#each proxyNames}}
+{{this}}{{#unless @last}}, {{/unless}}{{/each}}
+
+[Rule]
+DOMAIN-SUFFIX,google.com,PROXY
+DOMAIN-SUFFIX,facebook.com,PROXY
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/StreamingMedia/Video.list,Streaming
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Gaming.list,Gaming
+GEOIP,CN,DIRECT
+FINAL,DIRECT
+
+[Host]
+localhost = 127.0.0.1
