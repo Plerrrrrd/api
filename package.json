@@ -1,0 +1,32 @@
+{
+  "name": "vpn-converter",
+  "version": "1.0.0",
+  "description": "VPN configuration converter with multiple formats and template levels",
+  "main": "server.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node server.js",
+    "setup": "node setup-templates.js",
+    "dev": "nodemon server.js",
+    "railway": "npm install && node setup-templates.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "^12.4.1",
+    "cors": "^2.8.5",
+    "crypto-js": "^4.2.0",
+    "express": "^4.18.2",
+    "handlebars": "^4.7.8",
+    "helmet": "^7.0.0",
+    "js-yaml": "^4.1.0",
+    "node-cache": "^5.1.2",
+    "node-fetch": "^2.6.7",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
