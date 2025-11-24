@@ -1,0 +1,53 @@
+port: 7890
+socks-port: 7891
+allow-lan: true
+mode: rule
+log-level: info
+
+dns:
+  enabled: true
+  nameserver:
+    - 8.8.8.8
+    - 1.1.1.1
+    - tls://dns.google:853
+  fallback:
+    - 1.1.1.1
+
+proxies:
+  {{#each proxies}}
+  {{this}}
+  {{/each}}
+
+proxy-groups:
+  - name: PROXY
+    type: select
+    proxies:
+      - DIRECT
+      {{#each proxyNames}}
+      - {{this}}
+      {{/each}}
+  
+  - name: Streaming
+    type: select
+    proxies:
+      - PROXY
+      - DIRECT
+    use:
+      - netflix
+      - youtube
+
+  - name: Gaming
+    type: select
+    proxies:
+      - PROXY
+      - DIRECT
+    use:
+      - steam
+      - epic-games
+
+rules:
+  - DOMAIN-SUFFIX,google.com,PROXY
+  - DOMAIN-SUFFIX,facebook.com,PROXY
+  - RULE-SET,streaming-rules,Streaming
+  - RULE-SET,gaming-rules,Gaming
+  - MATCH,DIRECT
